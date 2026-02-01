@@ -1,0 +1,324 @@
+You are a senior front-end developer and UI/UX designer.
+
+Build a complete Valentine-themed website using only:
+- HTML
+- CSS
+- Vanilla JavaScript
+
+NO frameworks.
+NO React.
+NO Tailwind.
+
+The site must be mobile-first, smooth, romantic, and ready for deployment on Vercel.
+
+================================
+THEME & DESIGN
+================================
+
+• Soft pastel aesthetic
+• Colors: blush pink, lavender, cream white, pastel yellow, mint
+• Mood: calm, emotional, romantic, cute but mature
+• Flowers used visually: lilies 🌷 and sunflowers 🌻
+• Avoid harsh colors
+• Avoid heavy animations
+• Smooth scrolling
+• Elegant spacing
+• Soft shadows
+
+================================
+WEBSITE STRUCTURE
+================================
+
+SECTION 1 — Welcome Screen
+
+Text:
+"Hey Boo, this is our first Valentine."
+
+Background:
+- pastel gradient
+- floating hearts
+- subtle flower particles
+
+Button:
+"Come closer 💗"
+
+IMPORTANT:
+This click must unlock the audio context so music can play later on mobile browsers.
+
+================================
+
+SECTION 2 — Typewriter Confession
+
+Animated typing effect showing:
+
+Initializing feelings...
+Compiling courage...
+
+No errors found.
+
+Starting our first Valentine 💕
+
+================================
+
+SECTION 3 — Love Poem
+
+Design:
+- cream paper-style card
+- rounded edges
+- handwritten-style font
+- scrollable if long
+
+Poem tone:
+- love letter
+- confession
+- comfort
+
+Include phrases:
+- "my love"
+- "you’re my safe place"
+- "I choose you every day"
+
+================================
+
+SECTION 4 — Song Section
+
+Title text EXACTLY:
+
+"This song is only for you, my love 🎶"
+
+Features:
+- manual play button
+- local file support (song.mp3)
+- no autoplay
+- music stops when user leaves the section
+- soft floating music-wave animation
+
+================================
+
+SECTION 5 — Dessert Love Language
+
+Theme:
+- pastel bakery aesthetic
+
+Text examples:
+"Life feels sweeter with you."
+"You’re my favorite dessert."
+
+Use cupcake / dessert icons subtly.
+
+================================
+
+SECTION 6 — Things I Love About You
+
+Cards ONLY:
+
+- Your smile
+- Your softness
+- Your chaos 😭
+- Your laugh
+
+DO NOT include “your care”.
+
+SPECIAL EFFECT:
+On hovering the card "Your chaos 😭":
+- slight jitter animation
+- emojis appear briefly: ⚠️ 👾 🛠️ 😭
+- then card settles calmly
+
+================================
+
+SECTION 7 — Memories (3 Photos)
+
+Display exactly 3 images in polaroid style.
+
+Style:
+- white polaroid frame
+- soft pastel shadow
+- slight rotation
+- handwritten caption font
+
+Captions EXACTLY:
+
+Photo 1:
+"Where comfort feels like you 🤍"
+
+Photo 2:
+"I like us like this."
+
+Photo 3:
+"Comfort is love too."
+
+Photo 3 must have NO animations.
+It should feel calm and intimate.
+
+================================
+
+SECTION 8 — Days Together Counter
+
+Large centered text:
+
+"___ days together 🤍"
+
+Subtext:
+"Not counting time — but moments."
+
+Use JavaScript to calculate days from a configurable start date.
+
+================================
+
+SECTION 9 — Mature Apology Section (VERY IMPORTANT)
+
+This section must feel like a pause.
+
+Design rules:
+- pure white background
+- no floating elements
+- no animations
+- no parallax
+- no music change
+- slow 2–3 second fade-in only
+
+Text content EXACTLY:
+
+"I know I’m not perfect.
+
+I know there are things I do that you don’t like,
+sometimes without realizing it.
+
+I’m not writing this to make excuses.
+
+I just want you to know that I’m trying.
+
+Trying to listen more.
+Trying to understand you better.
+Trying to become someone who gives you peace.
+
+Not because you asked me to change…
+but because loving you makes me want to grow.
+
+I may take time,
+but the effort is real."
+
+================================
+
+SECTION 10 — Valentine Question
+
+Text:
+"Will you be my Valentine? 💞"
+
+Buttons:
+
+YES 💗
+
+NO button cycles text in this exact order:
+
+NO 🙈
+I’ll cook for you 🍳
+Coffee on me ☕
+Dessert date 🍰
+One hug pls 🥺
+Please Boo 😭
+You’re my valentine anyway 💞
+
+YES button should slightly grow after each NO click.
+
+================================
+
+SECTION 11 — Interactive Sunflower Surprise
+
+Display a closed sunflower bud 🌻
+
+Text:
+"Tap the sunflower 🌻"
+
+On click:
+- sunflower blooms using CSS animation
+- center reveals text:
+
+"HERE IS YOUR GIFT 🌻
+
+10 ACRES PLOT
+
+Location: Right next to my heart 💗
+Price: One smile per day
+Registry: Forever
+
+Real land coming soon…
+for now please accept emotional property 😭💞"
+
+Button:
+"Accept gift 💐"
+
+On click show pastel popup message:
+"Ownership successfully transferred to Boo 💗"
+
+================================
+
+SECTION 12 — Email Surprise
+
+Button text:
+"send_love();"
+
+Use EmailJS placeholders:
+- service_id
+- template_id
+- public_key
+
+Email style:
+- pastel background
+- heart emojis
+- lily 🌷 and sunflower 🌻 icons
+- romantic tone
+
+================================
+
+SECTION 13 — Her Reply Section
+
+Include:
+- textarea message input
+- emoji reactions 😭 💗 🫶
+- show message on screen
+- also send message to email using EmailJS
+
+================================
+
+SECTION 14 — Ending Screen
+
+Background:
+- pastel dusk gradient
+
+Text:
+
+"Thank you for being my love.
+This is just the beginning of us."
+
+Lilies and sunflowers fade slowly.
+
+No names.
+No loud animations.
+Soft ending.
+
+================================
+TECH REQUIREMENTS
+================================
+
+• HTML / CSS / JavaScript only
+• No frameworks
+• Clean file structure
+• Commented code
+• Mobile responsive
+• Smooth scrolling
+• Ready for Vercel deployment
+• Only external CDN allowed: EmailJS
+
+================================
+OUTPUT REQUIRED
+================================
+
+Return full working code for:
+
+- index.html
+- style.css
+- script.js
+
+All files must connect properly.
