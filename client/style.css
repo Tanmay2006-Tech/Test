@@ -1,0 +1,439 @@
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+   :root {
+    --bg-color: #fdf6f6; /* Cream White */
+    --primary-pink: #ffb7b2; /* Blush Pink */
+    --soft-lavender: #e2d1f9;
+    --pastel-yellow: #fff5ba;
+    --mint: #d4f0f0;
+    --text-color: #5d4037; /* Warm Brown */
+    --text-light: #8d6e63;
+    --white: #ffffff;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --font-handwriting: 'Architects Daughter', cursive;
+    --font-body: 'DM Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+    transition: background-color 0.5s ease;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-handwriting);
+    font-weight: 400;
+}
+
+button {
+    cursor: pointer;
+    font-family: var(--font-body);
+    border: none;
+    outline: none;
+}
+
+/* =========================================
+   UTILITIES
+   ========================================= */
+.hidden {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* =========================================
+   SECTION 1: WELCOME
+   ========================================= */
+#welcome-section {
+    background: linear-gradient(135deg, #fff0f5 0%, #e6e6fa 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-elements span {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: floatUp 10s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+.primary-btn {
+    background-color: var(--primary-pink);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 10px rgba(255, 183, 178, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.primary-btn:active {
+    transform: scale(0.95);
+}
+
+/* =========================================
+   SECTION 2: TYPEWRITER
+   ========================================= */
+#typewriter-section {
+    background-color: #1a1a1a;
+    color: #0f0;
+    font-family: 'Fira Code', monospace;
+}
+
+.console-container {
+    text-align: left;
+    max-width: 600px;
+    width: 100%;
+}
+
+#typewriter-cursor {
+    display: inline-block;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* =========================================
+   SECTION 3: POEM
+   ========================================= */
+.paper-card {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    max-width: 500px;
+    transform: rotate(-1deg);
+    border: 1px solid #eee;
+}
+
+.paper-card h2 {
+    color: var(--primary-pink);
+    margin-bottom: 1.5rem;
+}
+
+/* =========================================
+   SECTION 4: SONG
+   ========================================= */
+#song-section h2 {
+    margin-bottom: 2rem;
+}
+
+.music-visualizer {
+    display: flex;
+    gap: 5px;
+    height: 50px;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
+
+.bar {
+    width: 10px;
+    background-color: var(--soft-lavender);
+    animation: bounce 1s infinite ease-in-out;
+}
+
+.bar:nth-child(2) { animation-delay: 0.2s; }
+.bar:nth-child(3) { animation-delay: 0.4s; }
+.bar:nth-child(4) { animation-delay: 0.1s; }
+.bar:nth-child(5) { animation-delay: 0.3s; }
+
+@keyframes bounce {
+    0%, 100% { height: 10px; }
+    50% { height: 50px; }
+}
+
+.icon-btn {
+    background: white;
+    border: 2px solid var(--primary-pink);
+    color: var(--primary-pink);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+/* =========================================
+   SECTION 6: THINGS I LOVE
+   ========================================= */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.love-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    position: relative;
+    cursor: default;
+}
+
+#chaos-card {
+    position: relative;
+}
+
+#chaos-card:hover {
+    animation: jitter 0.3s infinite;
+}
+
+.emojis-popup {
+    display: none;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    white-space: nowrap;
+}
+
+#chaos-card:hover .emojis-popup {
+    display: block;
+}
+
+@keyframes jitter {
+    0% { transform: translate(0,0) rotate(0deg); }
+    25% { transform: translate(2px,2px) rotate(1deg); }
+    50% { transform: translate(-2px,-2px) rotate(-1deg); }
+    75% { transform: translate(2px,-2px) rotate(1deg); }
+    100% { transform: translate(0,0) rotate(0deg); }
+}
+
+/* =========================================
+   SECTION 7: MEMORIES
+   ========================================= */
+.polaroid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.polaroid {
+    background: white;
+    padding: 1rem 1rem 3rem 1rem;
+    box-shadow: var(--shadow);
+    transform: rotate(-3deg);
+    transition: transform 0.3s ease;
+    max-width: 250px;
+}
+
+.polaroid img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.polaroid .caption {
+    font-family: var(--font-handwriting);
+    margin-top: 1rem;
+    color: var(--text-color);
+}
+
+.polaroid.p2 { transform: rotate(2deg); }
+.polaroid.p3 { transform: rotate(0deg); } /* No rotation for 3rd */
+
+.polaroid:hover {
+    transform: scale(1.05) rotate(0);
+    z-index: 10;
+}
+
+/* =========================================
+   SECTION 8: COUNTER
+   ========================================= */
+#days-count {
+    font-size: 3rem;
+    color: var(--primary-pink);
+}
+
+/* =========================================
+   SECTION 9: APOLOGY
+   ========================================= */
+#apology-section {
+    background-color: white;
+}
+
+.clean-text-container {
+    max-width: 600px;
+    text-align: left;
+}
+
+.clean-text-container p {
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.clean-text-container p.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.highlight {
+    color: var(--text-light);
+    font-style: italic;
+    border-left: 3px solid var(--soft-lavender);
+    padding-left: 1rem;
+}
+
+/* =========================================
+   SECTION 10: QUESTION
+   ========================================= */
+.buttons-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    align-items: center;
+}
+
+.valentine-btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.yes {
+    background-color: var(--primary-pink);
+    color: white;
+}
+
+.no {
+    background-color: #ddd;
+    color: #555;
+}
+
+/* =========================================
+   SECTION 11: SUNFLOWER
+   ========================================= */
+#sunflower-container {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    cursor: pointer;
+    margin: 2rem auto;
+    transition: all 1s ease;
+}
+
+.flower-center {
+    width: 60px;
+    height: 60px;
+    background: #5d4037;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.petals {
+    width: 100%;
+    height: 100%;
+    background: #ffd700;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transform: scale(0.1); /* Closed bud */
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bloomed .petals {
+    transform: scale(1);
+}
+
+.gift-card {
+    background: var(--pastel-yellow);
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 1rem 0;
+    text-align: left;
+}
+
+/* =========================================
+   SECTION 12 & 13: EMAIL
+   ========================================= */
+.code-btn {
+    font-family: 'Fira Code', monospace;
+    background: #333;
+    color: #0f0;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+}
+
+#reply-container textarea {
+    width: 100%;
+    height: 100px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 2px solid var(--soft-lavender);
+    border-radius: 10px;
+    font-family: var(--font-body);
+}
+
+.reactions {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+@media (max-width: 768px) {
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .polaroid-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #days-count {
+        font-size: 2rem;
+    }
+}

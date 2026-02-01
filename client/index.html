@@ -1,15 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fira+Code:wght@300..700&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Oxanium:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine 💗</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Initialize EmailJS with your public key
+            // REPLACE WITH YOUR ACTUAL PUBLIC KEY
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- AUDIO ELEMENT -->
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- SECTION 1: Welcome Screen -->
+    <section id="welcome-section" class="screen active-screen">
+        <div class="floating-elements">
+            <!-- JS will populate hearts/flowers here -->
+        </div>
+        <div class="content">
+            <h1>Hey Boo, this is our first Valentine.</h1>
+            <button id="start-btn" class="primary-btn">Come closer 💗</button>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Typewriter Confession -->
+    <section id="typewriter-section" class="screen hidden">
+        <div class="console-container">
+            <div id="typewriter-text"></div>
+            <div id="typewriter-cursor">_</div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER (Hidden until typewriter finishes) -->
+    <main id="main-content" class="hidden">
+        
+        <!-- SECTION 3: Love Poem -->
+        <section class="content-section" id="poem-section">
+            <div class="paper-card">
+                <h2>My Love</h2>
+                <p>
+                    You’re my safe place in this chaotic world.
+                    I choose you every day, over and over again.
+                    <br><br>
+                    You bring color to my grey days and warmth to my coldest nights.
+                    Thank you for being you.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Song Section -->
+        <section class="content-section" id="song-section">
+            <h2>This song is only for you, my love 🎶</h2>
+            <div class="music-visualizer">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div>
+            </div>
+            <button id="play-music-btn" class="icon-btn">▶ Play Music</button>
+        </section>
+
+        <!-- SECTION 5: Dessert Love Language -->
+        <section class="content-section" id="dessert-section">
+            <div class="dessert-container">
+                <div class="cupcake">🧁</div>
+                <p>"Life feels sweeter with you."</p>
+                <div class="cake">🍰</div>
+                <p>"You’re my favorite dessert."</p>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Things I Love About You -->
+        <section class="content-section" id="things-i-love">
+            <h2>Things I Love About You</h2>
+            <div class="cards-grid">
+                <div class="love-card">Your smile</div>
+                <div class="love-card">Your softness</div>
+                <div class="love-card special-hover" id="chaos-card">
+                    Your chaos 😭
+                    <div class="emojis-popup">⚠️ 👾 🛠️ 😭</div>
+                </div>
+                <div class="love-card">Your laugh</div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: Memories -->
+        <section class="content-section" id="memories-section">
+            <h2>Memories</h2>
+            <div class="polaroid-container">
+                <div class="polaroid p1">
+                    <img src="/images/memory_1.jpg" alt="Memory 1">
+                    <p class="caption">Where comfort feels like you 🤍</p>
+                </div>
+                <div class="polaroid p2">
+                    <img src="/images/memory_2.jpg" alt="Memory 2">
+                    <p class="caption">I like us like this.</p>
+                </div>
+                <div class="polaroid p3">
+                    <img src="/images/memory_3.jpg" alt="Memory 3">
+                    <p class="caption">Comfort is love too.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: Days Together Counter -->
+        <section class="content-section" id="counter-section">
+            <h1 id="days-count">0 days together 🤍</h1>
+            <p>Not counting time — but moments.</p>
+        </section>
+
+        <!-- SECTION 9: Mature Apology Section -->
+        <section class="content-section" id="apology-section">
+            <div class="clean-text-container">
+                <p>I know I’m not perfect.</p>
+                <p>I know there are things I do that you don’t like,<br>sometimes without realizing it.</p>
+                <p>I’m not writing this to make excuses.</p>
+                <p>I just want you to know that I’m trying.</p>
+                <p class="highlight">Trying to listen more.<br>Trying to understand you better.<br>Trying to become someone who gives you peace.</p>
+                <p>Not because you asked me to change…<br>but because loving you makes me want to grow.</p>
+                <p>I may take time,<br>but the effort is real.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 10: Valentine Question -->
+        <section class="content-section" id="valentine-question">
+            <h2>Will you be my Valentine? 💞</h2>
+            <div class="buttons-container">
+                <button id="yes-btn" class="valentine-btn yes">YES 💗</button>
+                <button id="no-btn" class="valentine-btn no">NO 🙈</button>
+            </div>
+        </section>
+
+        <!-- SECTION 11: Interactive Sunflower Surprise -->
+        <section class="content-section hidden" id="sunflower-section">
+            <h2>Tap the sunflower 🌻</h2>
+            <div id="sunflower-container" class="bud">
+                <div class="flower-center"></div>
+                <div class="petals"></div>
+            </div>
+            <div id="gift-reveal" class="hidden">
+                <h3>HERE IS YOUR GIFT 🌻</h3>
+                <div class="gift-card">
+                    <h4>10 ACRES PLOT</h4>
+                    <p><strong>Location:</strong> Right next to my heart 💗</p>
+                    <p><strong>Price:</strong> One smile per day</p>
+                    <p><strong>Registry:</strong> Forever</p>
+                    <p class="small-text">Real land coming soon…<br>for now please accept emotional property 😭💞</p>
+                </div>
+                <button id="accept-gift-btn" class="primary-btn">Accept gift 💐</button>
+            </div>
+        </section>
+
+        <!-- SECTION 12 & 13: Email Surprise & Reply -->
+        <section class="content-section hidden" id="email-section">
+            <button id="send-love-btn" class="code-btn">send_love();</button>
+            
+            <div id="reply-container" class="hidden">
+                <h3>Send a reply? 💌</h3>
+                <textarea id="reply-message" placeholder="Write something sweet..."></textarea>
+                <div class="reactions">
+                    <span class="reaction">😭</span>
+                    <span class="reaction">💗</span>
+                    <span class="reaction">🫶</span>
+                </div>
+                <button id="send-reply-btn" class="primary-btn">Send Message 📨</button>
+            </div>
+        </section>
+
+        <!-- SECTION 14: Ending Screen -->
+        <section class="content-section hidden" id="ending-section">
+            <div class="ending-content">
+                <h2>Thank you for being my love.</h2>
+                <p>This is just the beginning of us.</p>
+                <div class="fading-flowers">🌷 🌻 🌷 🌻</div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
 </html>
