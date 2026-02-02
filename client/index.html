@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For My Valentine 💗</title>
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -13,6 +13,12 @@
     </script>
 </head>
 <body>
+
+    <!-- GLOBAL FLOATING ELEMENTS -->
+    <div class="global-floating-bg">
+        <div class="floating-hearts"></div>
+        <div class="floating-petals"></div>
+    </div>
 
     <!-- AUDIO ELEMENT -->
     <audio id="bg-music" loop>
@@ -57,55 +63,57 @@
         <section class="content-section" id="poem-section">
             <div class="cute-cloud cloud-1">☁️</div>
             <div class="cute-cloud cloud-2">☁️</div>
-            <div class="paper-card">
-                <div class="paper-tape"></div>
-                <div class="card-decoration">✨</div>
-                <h2>My Love Letter 💌</h2>
-                <div class="poem-content">
-                    <p>In a world full of chaos and noise,</p>
-                    <p>you became my peace, my quiet joy.</p>
-                    <br>
-                    <p>You're my safe place when storms arise,</p>
-                    <p>the calm I find when I close my eyes.</p>
-                    <br>
-                    <p>I choose you every single day,</p>
-                    <p>in every moment, in every way.</p>
-                    <br>
-                    <p class="signature">Forever yours 💕</p>
+            <div class="scroll-reveal">
+                <div class="paper-card">
+                    <div class="paper-tape"></div>
+                    <div class="card-decoration">✨</div>
+                    <h2>My Love Letter 💌</h2>
+                    <div class="poem-content">
+                        <p>In a world full of chaos and noise,</p>
+                        <p>you became my peace, my quiet joy.</p>
+                        <br>
+                        <p>You're my safe place when storms arise,</p>
+                        <p>the calm I find when I close my eyes.</p>
+                        <br>
+                        <p>I choose you every single day,</p>
+                        <p>in every moment, in every way.</p>
+                        <br>
+                        <p class="signature">Forever yours 💕</p>
+                    </div>
+                    <div class="card-hearts">💕</div>
                 </div>
-                <div class="card-hearts">💕</div>
             </div>
         </section>
 
         <!-- SECTION: Cute Cartoons -->
         <section class="content-section" id="meme-section">
-            <div class="section-title-wrapper">
+            <div class="section-title-wrapper scroll-reveal">
                 <span class="title-decoration">🌸</span>
                 <h2>Us in a Nutshell</h2>
                 <span class="title-decoration">🌸</span>
             </div>
             <div class="meme-grid">
-                <div class="meme-card">
+                <div class="meme-card scroll-reveal" data-delay="0">
                     <div class="meme-frame">
-                        <img src="/images/cartoon_1.jpg" alt="Cute cartoon 1">
+                        <img src="/images/cartoon_1.jpg" alt="Cute cartoon 1" loading="lazy">
                     </div>
                     <p>Me waiting for your text 🥺</p>
                 </div>
-                <div class="meme-card">
+                <div class="meme-card scroll-reveal" data-delay="100">
                     <div class="meme-frame">
-                        <img src="/images/cartoon_2.jpg" alt="Cute cartoon 2">
+                        <img src="/images/cartoon_2.jpg" alt="Cute cartoon 2" loading="lazy">
                     </div>
                     <p>POV: You said something cute</p>
                 </div>
-                <div class="meme-card">
+                <div class="meme-card scroll-reveal" data-delay="200">
                     <div class="meme-frame">
-                        <img src="/images/cartoon_3.jpg" alt="Cute cartoon 3">
+                        <img src="/images/cartoon_3.jpg" alt="Cute cartoon 3" loading="lazy">
                     </div>
                     <p>When you finally reply 😭💗</p>
                 </div>
-                <div class="meme-card">
+                <div class="meme-card scroll-reveal" data-delay="300">
                     <div class="meme-frame">
-                        <img src="/images/cartoon_4.jpg" alt="Cute cartoon 4">
+                        <img src="/images/cartoon_4.jpg" alt="Cute cartoon 4" loading="lazy">
                     </div>
                     <p>Us being chaotic together 🤪</p>
                 </div>
@@ -117,47 +125,49 @@
             <div class="music-note note-1">🎵</div>
             <div class="music-note note-2">🎶</div>
             <div class="music-note note-3">🎵</div>
-            <div class="vinyl-container">
-                <div class="vinyl" id="vinyl">
-                    <div class="vinyl-shine"></div>
-                    <div class="vinyl-label">💗</div>
+            <div class="scroll-reveal">
+                <div class="vinyl-container">
+                    <div class="vinyl" id="vinyl">
+                        <div class="vinyl-shine"></div>
+                        <div class="vinyl-label">💗</div>
+                    </div>
                 </div>
+                <h2>This song is only for you, my love 🎶</h2>
+                <div class="music-visualizer">
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <button id="play-music-btn" class="music-btn">
+                    <span class="play-icon">▶</span>
+                    <span>Play Our Song</span>
+                </button>
             </div>
-            <h2>This song is only for you, my love 🎶</h2>
-            <div class="music-visualizer">
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-            <button id="play-music-btn" class="music-btn">
-                <span class="play-icon">▶</span>
-                <span>Play Our Song</span>
-            </button>
         </section>
 
         <!-- SECTION 5: Dessert Love Language -->
         <section class="content-section" id="dessert-section">
-            <div class="section-title-wrapper">
+            <div class="section-title-wrapper scroll-reveal">
                 <span class="title-decoration">🍰</span>
                 <h2>Sweet Like You</h2>
                 <span class="title-decoration">🧁</span>
             </div>
             <div class="dessert-container">
-                <div class="dessert-card">
+                <div class="dessert-card scroll-reveal" data-delay="0">
                     <div class="dessert-icon-wrapper">
                         <span class="dessert-icon">🧁</span>
                         <span class="dessert-sparkle">✨</span>
                     </div>
                     <p>"Life feels sweeter with you."</p>
                 </div>
-                <div class="dessert-card">
+                <div class="dessert-card scroll-reveal" data-delay="150">
                     <div class="dessert-icon-wrapper">
                         <span class="dessert-icon">🍰</span>
                         <span class="dessert-sparkle">✨</span>
                     </div>
                     <p>"You're my favorite dessert."</p>
                 </div>
-                <div class="dessert-card">
+                <div class="dessert-card scroll-reveal" data-delay="300">
                     <div class="dessert-icon-wrapper">
                         <span class="dessert-icon">🍩</span>
                         <span class="dessert-sparkle">✨</span>
@@ -169,32 +179,32 @@
 
         <!-- SECTION 6: Things I Love About You -->
         <section class="content-section" id="things-i-love">
-            <div class="section-title-wrapper">
+            <div class="section-title-wrapper scroll-reveal">
                 <span class="title-decoration">💕</span>
                 <h2>Things I Love About You</h2>
                 <span class="title-decoration">💕</span>
             </div>
             <div class="cards-grid">
-                <div class="love-card" data-tilt>
+                <div class="love-card scroll-reveal" data-delay="0" data-tilt>
                     <div class="card-glow"></div>
                     <span class="card-emoji">😊</span>
                     <span>Your smile</span>
                     <span class="card-sparkle">✨</span>
                 </div>
-                <div class="love-card" data-tilt>
+                <div class="love-card scroll-reveal" data-delay="100" data-tilt>
                     <div class="card-glow"></div>
                     <span class="card-emoji">🥰</span>
                     <span>Your softness</span>
                     <span class="card-sparkle">✨</span>
                 </div>
-                <div class="love-card special-hover" id="chaos-card" data-tilt>
+                <div class="love-card special-hover scroll-reveal" data-delay="200" id="chaos-card" data-tilt>
                     <div class="card-glow"></div>
                     <span class="card-emoji">🤪</span>
                     <span>Your chaos 😭</span>
                     <div class="emojis-popup">⚠️ 👾 🛠️ 😭</div>
                     <span class="card-sparkle">✨</span>
                 </div>
-                <div class="love-card" data-tilt>
+                <div class="love-card scroll-reveal" data-delay="300" data-tilt>
                     <div class="card-glow"></div>
                     <span class="card-emoji">😂</span>
                     <span>Your laugh</span>
@@ -205,25 +215,25 @@
 
         <!-- SECTION 7: Memories -->
         <section class="content-section" id="memories-section">
-            <div class="section-title-wrapper">
+            <div class="section-title-wrapper scroll-reveal">
                 <span class="title-decoration">📸</span>
                 <h2>Our Moments</h2>
                 <span class="title-decoration">💕</span>
             </div>
             <div class="polaroid-container">
-                <div class="polaroid p1">
+                <div class="polaroid p1 scroll-reveal" data-delay="0">
                     <div class="polaroid-tape"></div>
-                    <img src="/images/memory_1.jpg" alt="Memory 1">
+                    <img src="/images/memory_1.jpg" alt="Memory 1" loading="lazy">
                     <p class="caption">Where comfort feels like you 🤍</p>
                 </div>
-                <div class="polaroid p2">
+                <div class="polaroid p2 scroll-reveal" data-delay="150">
                     <div class="polaroid-tape"></div>
-                    <img src="/images/memory_2.jpg" alt="Memory 2">
+                    <img src="/images/memory_2.jpg" alt="Memory 2" loading="lazy">
                     <p class="caption">I like us like this.</p>
                 </div>
-                <div class="polaroid p3">
+                <div class="polaroid p3 scroll-reveal" data-delay="300">
                     <div class="polaroid-tape"></div>
-                    <img src="/images/memory_3.jpg" alt="Memory 3">
+                    <img src="/images/memory_3.jpg" alt="Memory 3" loading="lazy">
                     <p class="caption">Comfort is love too.</p>
                 </div>
             </div>
@@ -231,7 +241,7 @@
 
         <!-- SECTION 8: Days Together Counter -->
         <section class="content-section" id="counter-section">
-            <div class="counter-wrapper">
+            <div class="counter-wrapper scroll-reveal">
                 <div class="counter-decoration">
                     <span>🌸</span><span>💕</span><span>🌸</span>
                 </div>
@@ -249,20 +259,20 @@
         <!-- SECTION 9: Mature Apology Section -->
         <section class="content-section" id="apology-section">
             <div class="clean-text-container">
-                <p>I know I'm not perfect.</p>
-                <p>I know there are things I do that you don't like,<br>sometimes without realizing it.</p>
-                <p>I'm not writing this to make excuses.</p>
-                <p>I just want you to know that I'm trying.</p>
-                <p class="highlight">Trying to listen more.<br>Trying to understand you better.<br>Trying to become someone who gives you peace.</p>
-                <p>Not because you asked me to change…<br>but because loving you makes me want to grow.</p>
-                <p>I may take time,<br>but the effort is real.</p>
+                <p class="scroll-reveal-text">I know I'm not perfect.</p>
+                <p class="scroll-reveal-text">I know there are things I do that you don't like,<br>sometimes without realizing it.</p>
+                <p class="scroll-reveal-text">I'm not writing this to make excuses.</p>
+                <p class="scroll-reveal-text">I just want you to know that I'm trying.</p>
+                <p class="scroll-reveal-text highlight">Trying to listen more.<br>Trying to understand you better.<br>Trying to become someone who gives you peace.</p>
+                <p class="scroll-reveal-text">Not because you asked me to change…<br>but because loving you makes me want to grow.</p>
+                <p class="scroll-reveal-text">I may take time,<br>but the effort is real.</p>
             </div>
         </section>
 
         <!-- SECTION 10: Valentine Question -->
         <section class="content-section" id="valentine-question">
             <div class="floating-hearts-bg"></div>
-            <div class="question-wrapper">
+            <div class="question-wrapper scroll-reveal">
                 <div class="question-decoration">🦋</div>
                 <h2>Will you be my Valentine? 💞</h2>
                 <div class="buttons-container">
@@ -277,7 +287,7 @@
 
         <!-- SECTION 11: Interactive Sunflower Surprise -->
         <section class="content-section hidden" id="sunflower-section">
-            <div class="section-title-wrapper">
+            <div class="section-title-wrapper scroll-reveal">
                 <span class="title-decoration">🌻</span>
                 <h2>Tap the sunflower</h2>
                 <span class="title-decoration">🌻</span>
@@ -305,13 +315,16 @@
                     </div>
                     <p class="small-text">Real land coming soon…<br>for now please accept emotional property 😭💞</p>
                 </div>
-                <button id="accept-gift-btn" class="primary-btn">Accept gift 💐</button>
+                <div class="gift-buttons">
+                    <button id="accept-gift-btn" class="primary-btn">Accept gift 💐</button>
+                    <button id="download-cert-btn" class="secondary-btn">Download Certificate 📜</button>
+                </div>
             </div>
         </section>
 
         <!-- SECTION 12 & 13: Email Surprise & Reply -->
         <section class="content-section hidden" id="email-section">
-            <div class="email-container">
+            <div class="email-container scroll-reveal">
                 <div class="email-decoration">💌</div>
                 <button id="send-love-btn" class="code-btn">
                     <span class="code-bracket">{</span>
@@ -336,7 +349,7 @@
 
         <!-- SECTION 14: Ending Screen -->
         <section class="content-section hidden" id="ending-section">
-            <div class="ending-content">
+            <div class="ending-content scroll-reveal">
                 <div class="ending-glow"></div>
                 <div class="ending-stars">
                     <span>✨</span><span>⭐</span><span>✨</span>
@@ -356,6 +369,9 @@
         </section>
 
     </main>
+
+    <!-- Certificate Canvas (Hidden) -->
+    <canvas id="certificate-canvas" style="display: none;"></canvas>
 
     <script src="script.js"></script>
 </body>

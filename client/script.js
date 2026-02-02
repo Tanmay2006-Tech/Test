@@ -8,6 +8,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const typewriterText = document.getElementById('typewriter-text');
     const mainContent = document.getElementById('main-content');
     
+    // --- GLOBAL FLOATING ELEMENTS ---
+    function createGlobalFloatingElements() {
+        const heartsContainer = document.querySelector('.floating-hearts');
+        const petalsContainer = document.querySelector('.floating-petals');
+        
+        const hearts = ['💗', '💕', '💖', '💝', '🩷'];
+        const petals = ['🌸', '🌺', '🌷', '✨', '⭐'];
+        
+        function createFloater(container, items) {
+            const el = document.createElement('span');
+            el.textContent = items[Math.floor(Math.random() * items.length)];
+            el.style.left = Math.random() * 100 + '%';
+            el.style.animationDuration = (Math.random() * 15 + 15) + 's';
+            el.style.animationDelay = Math.random() * 5 + 's';
+            el.style.fontSize = (Math.random() * 1 + 0.8) + 'rem';
+            container.appendChild(el);
+            
+            setTimeout(() => el.remove(), 30000);
+        }
+        
+        setInterval(() => {
+            if (heartsContainer) createFloater(heartsContainer, hearts);
+        }, 2000);
+        
+        setInterval(() => {
+            if (petalsContainer) createFloater(petalsContainer, petals);
+        }, 3000);
+    }
+    createGlobalFloatingElements();
+    
     // --- SPARKLE EFFECT ---
     function createSparkles() {
         const container = document.querySelector('.sparkles');
@@ -16,28 +46,26 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(() => {
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle';
+            sparkle.textContent = '✨';
             sparkle.style.left = Math.random() * 100 + '%';
             sparkle.style.top = Math.random() * 100 + '%';
             sparkle.style.animationDuration = (Math.random() * 2 + 1) + 's';
             container.appendChild(sparkle);
             
             setTimeout(() => sparkle.remove(), 3000);
-        }, 300);
+        }, 400);
     }
     createSparkles();
 
     // --- START EXPERIENCE ---
     startBtn.addEventListener('click', () => {
-        // Unlock Audio Context for mobile
         music.play().then(() => {
             music.pause();
             music.currentTime = 0;
         }).catch(e => console.log("Audio permission needed"));
 
-        // Add ripple effect
         createRipple(startBtn);
 
-        // Smooth transition
         welcomeSection.style.opacity = '0';
         welcomeSection.style.transform = 'scale(0.95)';
         welcomeSection.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -79,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => ripple.remove(), 600);
     }
 
-    // Add ripple animation
     const rippleStyle = document.createElement('style');
     rippleStyle.textContent = `
         @keyframes rippleEffect {
@@ -107,17 +134,15 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => el.remove(), 20000);
         }
         
-        // Initial burst
         for (let i = 0; i < 12; i++) {
             setTimeout(createFloater, i * 200);
         }
         
-        // Continue creating
         setInterval(createFloater, 600);
     }
     createFloatingElements();
 
-    // --- TYPEWRITER EFFECT (Enhanced) ---
+    // --- TYPEWRITER EFFECT ---
     function startTypewriter() {
         const lines = [
             { text: "$ initializing feelings...", delay: 35, color: "#64ffda" },
@@ -142,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     lineIndex++;
                     setTimeout(type, currentLine.delay);
                 } else if (charIndex === 0) {
-                    // Start new line with color
                     const color = currentLine.color || '#64ffda';
                     typewriterText.innerHTML += `<span style="color: ${color}">`;
                     charIndex++;
@@ -159,7 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(type, 500);
                 }
             } else {
-                // Finished typing
                 setTimeout(() => {
                     typewriterSection.style.opacity = '0';
                     typewriterSection.style.transform = 'scale(1.05)';
@@ -177,25 +200,41 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(type, 800);
     }
 
-    // --- SCROLL ANIMATIONS ---
+    // --- SCROLL ANIMATIONS (AOS-like) ---
     function initScrollAnimations() {
-        const sections = document.querySelectorAll('.content-section');
+        const scrollElements = document.querySelectorAll('.scroll-reveal');
+        const textElements = document.querySelectorAll('.scroll-reveal-text');
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    const delay = entry.target.dataset.delay || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('revealed');
+                    }, parseInt(delay));
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+        }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
         
-        sections.forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(50px)';
-            section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            observer.observe(section);
-        });
+        scrollElements.forEach(el => observer.observe(el));
+        
+        const textObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const texts = entry.target.querySelectorAll('.scroll-reveal-text');
+                    texts.forEach((text, index) => {
+                        setTimeout(() => {
+                            text.classList.add('revealed');
+                        }, index * 400);
+                    });
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        const apologySection = document.getElementById('apology-section');
+        if (apologySection) {
+            textObserver.observe(apologySection);
+        }
     }
 
     // --- SONG CONTROL ---
@@ -221,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Stop music when leaving section
     const musicObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting && isPlaying) {
@@ -236,16 +274,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     musicObserver.observe(songSection);
 
-    // --- DAYS COUNTER (Updated date: 22/08/2025) ---
-    const startDate = new Date('2025-08-22'); // CONFIGURABLE DATE
+    // --- DAYS COUNTER (22/08/2025) ---
+    const startDate = new Date('2025-08-22');
     const today = new Date();
     const diffTime = Math.abs(today - startDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
     
-    // Animate counter
     const daysElement = document.getElementById('days-count');
     let currentCount = 0;
-    const duration = 2000; // 2 seconds
+    const duration = 2000;
     const steps = 60;
     const increment = diffDays / steps;
     let step = 0;
@@ -272,24 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateCounter();
 
-    // --- APOLOGY FADE IN ---
-    const apologySection = document.getElementById('apology-section');
-    const apologyLines = document.querySelectorAll('.clean-text-container p');
-    
-    const apologyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                apologyLines.forEach((line, index) => {
-                    setTimeout(() => {
-                        line.classList.add('visible');
-                    }, index * 2000);
-                });
-            }
-        });
-    }, { threshold: 0.2 });
-
-    apologyObserver.observe(apologySection);
-
     // --- VALENTINE BUTTONS ---
     const yesBtn = document.getElementById('yes-btn');
     const noBtn = document.getElementById('no-btn');
@@ -314,23 +333,16 @@ document.addEventListener('DOMContentLoaded', () => {
             noClickCount = 0;
         }
         
-        // Grow Yes button smoothly
         yesScale += 0.12;
         yesBtn.style.transform = `scale(${yesScale})`;
         
-        // Shake animation
         yesBtn.style.animation = 'none';
         setTimeout(() => {
             yesBtn.style.animation = 'glow 2s ease-in-out infinite';
         }, 10);
-        
-        // Add bounce
-        yesBtn.classList.add('bounce');
-        setTimeout(() => yesBtn.classList.remove('bounce'), 300);
     });
 
     yesBtn.addEventListener('click', () => {
-        // Create heart explosion
         createHeartExplosion();
         createConfetti();
         
@@ -373,7 +385,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => container.remove(), 3000);
     }
     
-    // Add heart explosion animation
     const heartStyle = document.createElement('style');
     heartStyle.textContent = `
         @keyframes heartExplode {
@@ -383,13 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
                            rotate(var(--r)) scale(1); 
                 opacity: 0; 
             }
-        }
-        .bounce {
-            animation: bounceAnim 0.3s ease !important;
-        }
-        @keyframes bounceAnim {
-            0%, 100% { transform: scale(${yesScale}); }
-            50% { transform: scale(${yesScale * 1.1}); }
         }
     `;
     document.head.appendChild(heartStyle);
@@ -421,7 +425,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Add confetti animation
     const confettiStyle = document.createElement('style');
     confettiStyle.textContent = `
         @keyframes confettiFall {
@@ -438,12 +441,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const sunflowerContainer = document.getElementById('sunflower-container');
     const giftReveal = document.getElementById('gift-reveal');
     const acceptGiftBtn = document.getElementById('accept-gift-btn');
+    const downloadCertBtn = document.getElementById('download-cert-btn');
 
     sunflowerContainer.addEventListener('click', () => {
         if (!sunflowerContainer.classList.contains('bloomed')) {
             sunflowerContainer.classList.add('bloomed');
             
-            // Add sparkle effect around flower
             for (let i = 0; i < 12; i++) {
                 setTimeout(() => {
                     const sparkle = document.createElement('div');
@@ -451,8 +454,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     sparkle.style.cssText = `
                         position: absolute;
                         font-size: 1.5rem;
-                        left: ${50 + Math.cos(i * 30 * Math.PI / 180) * 100}%;
-                        top: ${50 + Math.sin(i * 30 * Math.PI / 180) * 100}%;
+                        left: ${50 + Math.cos(i * 30 * Math.PI / 180) * 80}%;
+                        top: ${30 + Math.sin(i * 30 * Math.PI / 180) * 80}%;
                         animation: sparkleOut 1s ease-out forwards;
                         pointer-events: none;
                     `;
@@ -468,7 +471,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Add sparkle out animation
     const sparkleStyle = document.createElement('style');
     sparkleStyle.textContent = `
         @keyframes sparkleOut {
@@ -486,6 +488,96 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('email-section').scrollIntoView({ behavior: 'smooth' });
         }, 2500);
     });
+
+    // --- DOWNLOAD CERTIFICATE ---
+    downloadCertBtn.addEventListener('click', () => {
+        generateCertificate();
+    });
+
+    function generateCertificate() {
+        const canvas = document.getElementById('certificate-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = 800;
+        canvas.height = 600;
+        
+        // Background gradient
+        const gradient = ctx.createLinearGradient(0, 0, 800, 600);
+        gradient.addColorStop(0, '#fff5f8');
+        gradient.addColorStop(0.5, '#fff0ff');
+        gradient.addColorStop(1, '#fff5eb');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 800, 600);
+        
+        // Border
+        ctx.strokeStyle = '#ff8fab';
+        ctx.lineWidth = 8;
+        ctx.strokeRect(20, 20, 760, 560);
+        
+        ctx.strokeStyle = '#ffd6cc';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(35, 35, 730, 530);
+        
+        // Title
+        ctx.fillStyle = '#ff6b9d';
+        ctx.font = 'bold 48px Georgia, serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Certificate of Emotional Property', 400, 100);
+        
+        // Decorative line
+        ctx.strokeStyle = '#d4b8ff';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(150, 120);
+        ctx.lineTo(650, 120);
+        ctx.stroke();
+        
+        // Main content
+        ctx.fillStyle = '#5c4d4d';
+        ctx.font = '24px Georgia, serif';
+        ctx.fillText('This certifies that', 400, 180);
+        
+        ctx.fillStyle = '#ff6b9d';
+        ctx.font = 'bold 36px Georgia, serif';
+        ctx.fillText('BOO 💗', 400, 230);
+        
+        ctx.fillStyle = '#5c4d4d';
+        ctx.font = '24px Georgia, serif';
+        ctx.fillText('is the sole owner of', 400, 280);
+        
+        ctx.fillStyle = '#ff6b9d';
+        ctx.font = 'bold 42px Georgia, serif';
+        ctx.fillText('10 ACRES OF LOVE', 400, 340);
+        
+        // Details
+        ctx.fillStyle = '#8a7575';
+        ctx.font = '20px Georgia, serif';
+        ctx.fillText('Location: Right next to my heart', 400, 400);
+        ctx.fillText('Price: One smile per day', 400, 430);
+        ctx.fillText('Registry: Forever & Always', 400, 460);
+        
+        // Date
+        const today = new Date();
+        const dateStr = today.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        ctx.font = 'italic 18px Georgia, serif';
+        ctx.fillText(`Issued on: ${dateStr}`, 400, 510);
+        
+        // Hearts decoration
+        ctx.font = '30px serif';
+        ctx.fillText('💗 🌻 💕', 400, 560);
+        
+        // Download
+        const link = document.createElement('a');
+        link.download = 'Love-Certificate.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        showPopup("Certificate downloaded! 📜💗");
+    }
 
     // --- POPUP FUNCTION ---
     function showPopup(message) {
@@ -544,22 +636,6 @@ document.addEventListener('DOMContentLoaded', () => {
             showPopup("Write something first! 🥺");
             return;
         }
-
-        // EmailJS integration (uncomment and configure)
-        /*
-        const templateParams = {
-            to_name: "My Love",
-            from_name: "Boo",
-            message: message + (selectedReaction ? ` ${selectedReaction}` : '')
-        };
-
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-            .then(function(response) {
-                console.log('SUCCESS!', response.status);
-            }, function(error) {
-                console.log('FAILED...', error);
-            });
-        */
         
         showPopup("Message sent with love! 💌");
         
@@ -577,8 +653,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const y = e.clientY - rect.top;
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
+            const rotateX = (y - centerY) / 15;
+            const rotateY = (centerX - x) / 15;
             
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
         });
@@ -586,5 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
         });
+        
+        card.addEventListener('touchstart', () => {}, { passive: true });
     });
 });
