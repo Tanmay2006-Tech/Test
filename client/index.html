@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Valentine 💗</title>
     <link rel="stylesheet" href="style.css">
-    <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            // Initialize EmailJS with your public key
-            // REPLACE WITH YOUR ACTUAL PUBLIC KEY
             emailjs.init("YOUR_PUBLIC_KEY");
         })();
     </script>
@@ -20,62 +17,124 @@
     <!-- AUDIO ELEMENT -->
     <audio id="bg-music" loop>
         <source src="/song.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
+
+    <!-- CURSOR TRAIL -->
+    <div id="cursor-trail"></div>
 
     <!-- SECTION 1: Welcome Screen -->
     <section id="welcome-section" class="screen active-screen">
-        <div class="floating-elements">
-            <!-- JS will populate hearts/flowers here -->
-        </div>
+        <div class="floating-elements"></div>
+        <div class="sparkles"></div>
         <div class="content">
+            <div class="welcome-heart">💗</div>
             <h1>Hey Boo, this is our first Valentine.</h1>
-            <button id="start-btn" class="primary-btn">Come closer 💗</button>
+            <p class="subtitle">A little something I made for you...</p>
+            <button id="start-btn" class="primary-btn">
+                <span>Come closer</span>
+                <span class="btn-heart">💗</span>
+            </button>
         </div>
     </section>
 
     <!-- SECTION 2: Typewriter Confession -->
     <section id="typewriter-section" class="screen hidden">
         <div class="console-container">
-            <div id="typewriter-text"></div>
-            <div id="typewriter-cursor">_</div>
+            <div class="console-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="console-title">love.exe</span>
+            </div>
+            <div class="console-body">
+                <div id="typewriter-text"></div>
+                <span id="typewriter-cursor">▋</span>
+            </div>
         </div>
     </section>
 
-    <!-- MAIN CONTENT CONTAINER (Hidden until typewriter finishes) -->
+    <!-- MAIN CONTENT CONTAINER -->
     <main id="main-content" class="hidden">
         
         <!-- SECTION 3: Love Poem -->
         <section class="content-section" id="poem-section">
+            <div class="section-bg"></div>
             <div class="paper-card">
-                <h2>My Love</h2>
-                <p>
-                    You’re my safe place in this chaotic world.
-                    I choose you every day, over and over again.
-                    <br><br>
-                    You bring color to my grey days and warmth to my coldest nights.
-                    Thank you for being you.
-                </p>
+                <div class="paper-tape"></div>
+                <h2>My Love Letter</h2>
+                <div class="poem-content">
+                    <p>In a world full of chaos and noise,</p>
+                    <p>you became my peace, my quiet joy.</p>
+                    <br>
+                    <p>You're my safe place when storms arise,</p>
+                    <p>the calm I find when I close my eyes.</p>
+                    <br>
+                    <p>I choose you every single day,</p>
+                    <p>in every moment, in every way.</p>
+                    <br>
+                    <p class="signature">Forever yours 💕</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: Cute Memes -->
+        <section class="content-section" id="meme-section">
+            <h2>Us in a Nutshell 😂💕</h2>
+            <div class="meme-grid">
+                <div class="meme-card">
+                    <img src="/images/meme_1.jpg" alt="Cute meme 1">
+                    <p>Me waiting for your text 🥺</p>
+                </div>
+                <div class="meme-card">
+                    <img src="/images/meme_2.jpg" alt="Cute meme 2">
+                    <p>POV: You said something cute</p>
+                </div>
+                <div class="meme-card">
+                    <img src="/images/meme_3.jpg" alt="Cute meme 3">
+                    <p>When you finally reply 😭💗</p>
+                </div>
+                <div class="meme-card">
+                    <img src="/images/meme_4.jpg" alt="Cute meme 4">
+                    <p>Us being chaotic together</p>
+                </div>
             </div>
         </section>
 
         <!-- SECTION 4: Song Section -->
         <section class="content-section" id="song-section">
+            <div class="vinyl-container">
+                <div class="vinyl" id="vinyl">
+                    <div class="vinyl-label">💗</div>
+                </div>
+            </div>
             <h2>This song is only for you, my love 🎶</h2>
             <div class="music-visualizer">
                 <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                <div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div>
             </div>
-            <button id="play-music-btn" class="icon-btn">▶ Play Music</button>
+            <button id="play-music-btn" class="music-btn">
+                <span class="play-icon">▶</span>
+                <span>Play Our Song</span>
+            </button>
         </section>
 
         <!-- SECTION 5: Dessert Love Language -->
         <section class="content-section" id="dessert-section">
+            <h2>Sweet Like You 🍰</h2>
             <div class="dessert-container">
-                <div class="cupcake">🧁</div>
-                <p>"Life feels sweeter with you."</p>
-                <div class="cake">🍰</div>
-                <p>"You’re my favorite dessert."</p>
+                <div class="dessert-card">
+                    <span class="dessert-icon">🧁</span>
+                    <p>"Life feels sweeter with you."</p>
+                </div>
+                <div class="dessert-card">
+                    <span class="dessert-icon">🍰</span>
+                    <p>"You're my favorite dessert."</p>
+                </div>
+                <div class="dessert-card">
+                    <span class="dessert-icon">🍩</span>
+                    <p>"Donut know what I'd do without you."</p>
+                </div>
             </div>
         </section>
 
@@ -83,48 +142,72 @@
         <section class="content-section" id="things-i-love">
             <h2>Things I Love About You</h2>
             <div class="cards-grid">
-                <div class="love-card">Your smile</div>
-                <div class="love-card">Your softness</div>
-                <div class="love-card special-hover" id="chaos-card">
-                    Your chaos 😭
+                <div class="love-card" data-tilt>
+                    <span class="card-emoji">😊</span>
+                    <span>Your smile</span>
+                </div>
+                <div class="love-card" data-tilt>
+                    <span class="card-emoji">🥰</span>
+                    <span>Your softness</span>
+                </div>
+                <div class="love-card special-hover" id="chaos-card" data-tilt>
+                    <span class="card-emoji">🤪</span>
+                    <span>Your chaos 😭</span>
                     <div class="emojis-popup">⚠️ 👾 🛠️ 😭</div>
                 </div>
-                <div class="love-card">Your laugh</div>
+                <div class="love-card" data-tilt>
+                    <span class="card-emoji">😂</span>
+                    <span>Your laugh</span>
+                </div>
             </div>
         </section>
 
         <!-- SECTION 7: Memories -->
         <section class="content-section" id="memories-section">
-            <h2>Memories</h2>
+            <h2>Our Moments 📸</h2>
             <div class="polaroid-container">
                 <div class="polaroid p1">
-                    <img src="/images/memory_1.jpg" alt="Memory 1">
-                    <p class="caption">Where comfort feels like you 🤍</p>
+                    <div class="polaroid-inner">
+                        <img src="/images/memory_1.jpg" alt="Memory 1">
+                        <p class="caption">Where comfort feels like you 🤍</p>
+                    </div>
                 </div>
                 <div class="polaroid p2">
-                    <img src="/images/memory_2.jpg" alt="Memory 2">
-                    <p class="caption">I like us like this.</p>
+                    <div class="polaroid-inner">
+                        <img src="/images/memory_2.jpg" alt="Memory 2">
+                        <p class="caption">I like us like this.</p>
+                    </div>
                 </div>
                 <div class="polaroid p3">
-                    <img src="/images/memory_3.jpg" alt="Memory 3">
-                    <p class="caption">Comfort is love too.</p>
+                    <div class="polaroid-inner">
+                        <img src="/images/memory_3.jpg" alt="Memory 3">
+                        <p class="caption">Comfort is love too.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- SECTION 8: Days Together Counter -->
         <section class="content-section" id="counter-section">
-            <h1 id="days-count">0 days together 🤍</h1>
-            <p>Not counting time — but moments.</p>
+            <div class="counter-wrapper">
+                <div class="counter-hearts">💗</div>
+                <h1 id="days-count">0</h1>
+                <p class="counter-label">days together 🤍</p>
+                <p class="counter-subtitle">Not counting time — but moments.</p>
+                <div class="milestone-badges">
+                    <span class="badge">First Valentine 💕</span>
+                    <span class="badge">Many more to come ✨</span>
+                </div>
+            </div>
         </section>
 
         <!-- SECTION 9: Mature Apology Section -->
         <section class="content-section" id="apology-section">
             <div class="clean-text-container">
-                <p>I know I’m not perfect.</p>
-                <p>I know there are things I do that you don’t like,<br>sometimes without realizing it.</p>
-                <p>I’m not writing this to make excuses.</p>
-                <p>I just want you to know that I’m trying.</p>
+                <p>I know I'm not perfect.</p>
+                <p>I know there are things I do that you don't like,<br>sometimes without realizing it.</p>
+                <p>I'm not writing this to make excuses.</p>
+                <p>I just want you to know that I'm trying.</p>
                 <p class="highlight">Trying to listen more.<br>Trying to understand you better.<br>Trying to become someone who gives you peace.</p>
                 <p>Not because you asked me to change…<br>but because loving you makes me want to grow.</p>
                 <p>I may take time,<br>but the effort is real.</p>
@@ -133,10 +216,16 @@
 
         <!-- SECTION 10: Valentine Question -->
         <section class="content-section" id="valentine-question">
-            <h2>Will you be my Valentine? 💞</h2>
-            <div class="buttons-container">
-                <button id="yes-btn" class="valentine-btn yes">YES 💗</button>
-                <button id="no-btn" class="valentine-btn no">NO 🙈</button>
+            <div class="question-wrapper">
+                <div class="floating-hearts-bg"></div>
+                <h2>Will you be my Valentine? 💞</h2>
+                <div class="buttons-container">
+                    <button id="yes-btn" class="valentine-btn yes">
+                        <span>YES</span>
+                        <span class="btn-emoji">💗</span>
+                    </button>
+                    <button id="no-btn" class="valentine-btn no">NO 🙈</button>
+                </div>
             </div>
         </section>
 
@@ -144,16 +233,21 @@
         <section class="content-section hidden" id="sunflower-section">
             <h2>Tap the sunflower 🌻</h2>
             <div id="sunflower-container" class="bud">
-                <div class="flower-center"></div>
-                <div class="petals"></div>
+                <div class="stem"></div>
+                <div class="flower-head">
+                    <div class="petals-layer"></div>
+                    <div class="flower-center"></div>
+                </div>
             </div>
             <div id="gift-reveal" class="hidden">
                 <h3>HERE IS YOUR GIFT 🌻</h3>
                 <div class="gift-card">
-                    <h4>10 ACRES PLOT</h4>
-                    <p><strong>Location:</strong> Right next to my heart 💗</p>
-                    <p><strong>Price:</strong> One smile per day</p>
-                    <p><strong>Registry:</strong> Forever</p>
+                    <div class="gift-header">10 ACRES PLOT</div>
+                    <div class="gift-details">
+                        <p><span class="label">Location:</span> Right next to my heart 💗</p>
+                        <p><span class="label">Price:</span> One smile per day</p>
+                        <p><span class="label">Registry:</span> Forever</p>
+                    </div>
                     <p class="small-text">Real land coming soon…<br>for now please accept emotional property 😭💞</p>
                 </div>
                 <button id="accept-gift-btn" class="primary-btn">Accept gift 💐</button>
@@ -162,26 +256,38 @@
 
         <!-- SECTION 12 & 13: Email Surprise & Reply -->
         <section class="content-section hidden" id="email-section">
-            <button id="send-love-btn" class="code-btn">send_love();</button>
-            
-            <div id="reply-container" class="hidden">
-                <h3>Send a reply? 💌</h3>
-                <textarea id="reply-message" placeholder="Write something sweet..."></textarea>
-                <div class="reactions">
-                    <span class="reaction">😭</span>
-                    <span class="reaction">💗</span>
-                    <span class="reaction">🫶</span>
+            <div class="email-container">
+                <button id="send-love-btn" class="code-btn">
+                    <span class="code-bracket">{</span>
+                    send_love()
+                    <span class="code-bracket">}</span>
+                </button>
+                
+                <div id="reply-container" class="hidden">
+                    <h3>Send a reply? 💌</h3>
+                    <textarea id="reply-message" placeholder="Write something sweet..."></textarea>
+                    <div class="reactions">
+                        <span class="reaction" data-emoji="😭">😭</span>
+                        <span class="reaction" data-emoji="💗">💗</span>
+                        <span class="reaction" data-emoji="🫶">🫶</span>
+                        <span class="reaction" data-emoji="🥺">🥺</span>
+                        <span class="reaction" data-emoji="💕">💕</span>
+                    </div>
+                    <button id="send-reply-btn" class="primary-btn">Send Message 📨</button>
                 </div>
-                <button id="send-reply-btn" class="primary-btn">Send Message 📨</button>
             </div>
         </section>
 
         <!-- SECTION 14: Ending Screen -->
         <section class="content-section hidden" id="ending-section">
             <div class="ending-content">
+                <div class="ending-glow"></div>
                 <h2>Thank you for being my love.</h2>
                 <p>This is just the beginning of us.</p>
-                <div class="fading-flowers">🌷 🌻 🌷 🌻</div>
+                <div class="fading-flowers">
+                    <span>🌷</span><span>🌻</span><span>🌷</span><span>🌻</span>
+                </div>
+                <div class="final-heart">💗</div>
             </div>
         </section>
 
